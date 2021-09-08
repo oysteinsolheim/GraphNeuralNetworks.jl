@@ -111,7 +111,7 @@ function to_sparse(A::ADJMAT_T, T::DataType=eltype(A); dir=:out, num_nodes=nothi
     if T != eltype(A)
         A = T.(A)
     end
-    return sparse(A), num_nodes, num_edges
+    return GBMatrix(sparse(A)), num_nodes, num_edges
 end
 
 function to_sparse(adj_list::ADJLIST_T, T::DataType=Int; dir=:out, num_nodes=nothing)
@@ -125,7 +125,8 @@ function to_sparse(coo::COO_T, T::DataType=Int; dir=:out, num_nodes=nothing)
     num_nodes = isnothing(num_nodes) ? max(maximum(s), maximum(t)) : num_nodes 
     A = sparse(s, t, eweight, num_nodes, num_nodes)
     num_edges = length(s)
-    A, num_nodes, num_edges
+    
+    GBMatrix(A), num_nodes, num_edges
 end
 
 @non_differentiable to_coo(x...)

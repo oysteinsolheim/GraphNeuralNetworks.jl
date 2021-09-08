@@ -14,6 +14,7 @@ using Flux: glorot_uniform, leakyrelu, GRUCell, @functor
 using MacroTools: @forward
 using NNlib, NNlibCUDA
 using ChainRulesCore
+using SuiteSparseGraphBLAS: GBMatrix
 import LightGraphs
 using LightGraphs: AbstractGraph, outneighbors, inneighbors, is_directed, ne, nv, 
                   adjacency_matrix, degree
